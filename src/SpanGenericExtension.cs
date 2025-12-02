@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Security.Cryptography;
-using Soenneker.Extensions.RandomNumberGenerators;
 
 namespace Soenneker.Extensions.Spans.Generics;
 
@@ -17,12 +16,11 @@ public static class SpanGenericExtension
     /// suitable for scenarios where predictable randomness must be avoided, such as shuffling sensitive data.</remarks>
     /// <typeparam name="T">The type of elements in the span to shuffle.</typeparam>
     /// <param name="span">The span whose elements will be shuffled in place.</param>
-    /// <param name="rng">The cryptographically secure random number generator used to determine the shuffle order. Cannot be null.</param>
-    public static void SecureShuffle<T>(this Span<T> span, RandomNumberGenerator rng)
+    public static void SecureShuffle<T>(this Span<T> span)
     {
         for (int i = span.Length - 1; i > 0; i--)
         {
-            int j = rng.GetInt32(i + 1);
+            int j = RandomNumberGenerator.GetInt32(i + 1);
             (span[i], span[j]) = (span[j], span[i]);
         }
     }
