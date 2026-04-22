@@ -14,10 +14,5 @@
     <ItemGroup>
         <ProjectReference Include="..\..\src\Soenneker.Extensions.Spans.Generics\Soenneker.Extensions.Spans.Generics.csproj" />
     </ItemGroup>
-
-    <ItemGroup>
-        <Content Include="testconfig.json">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </Content>
-    </ItemGroup>
 </Project>
+
