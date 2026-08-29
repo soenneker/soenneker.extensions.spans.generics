@@ -4,7 +4,7 @@
 [![](https://img.shields.io/github/actions/workflow/status/soenneker/soenneker.extensions.spans.generics/codeql.yml?label=CodeQL&style=for-the-badge)](https://github.com/soenneker/soenneker.extensions.spans.generics/actions/workflows/codeql.yml)
 
 # ![](https://user-images.githubusercontent.com/4441470/224455560-91ed3ee7-f510-4041-a8d2-3fc093025112.png) Soenneker.Extensions.Spans.Generics
-Various helpful generic span extension methods.
+Shuffles any writable span in place using cryptographically secure randomness.
 
 ## Installation
 
@@ -12,15 +12,15 @@ Various helpful generic span extension methods.
 dotnet add package Soenneker.Extensions.Spans.Generics
 ```
 
-## Quick start
+## Usage
 
 ```csharp
 using Soenneker.Extensions.Spans.Generics;
 
-// Given an existing Span<T> named span:
-span.SecureShuffle();
+Span<int> choices = [1, 2, 3, 4];
+choices.SecureShuffle();
 ```
 
-## Common operations
+`SecureShuffle<T>()` uses an unbiased Fisher–Yates shuffle with `RandomNumberGenerator.GetInt32`. It changes the original span and allocates no result collection. Empty and single-element spans are left unchanged.
 
-- `SecureShuffle()` - Randomly shuffles the elements of the specified span using a cryptographically secure random number generator. This method performs an in-place shuffle of the span using the Fisher–Yates algorithm and a secure random source.
+The shuffle is unpredictable, but it does not erase the elements or make sensitive values safe to retain in memory.
